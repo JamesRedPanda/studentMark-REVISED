@@ -1,4 +1,5 @@
-﻿namespace studentMark_REVISED
+﻿
+namespace studentMark_REVISED
 {
     internal class Program
     {
@@ -22,16 +23,9 @@
         {
             Console.WriteLine("Enter student name");
             string name = Console.ReadLine();
-            bool retryAllowed = true;
             return name;
-            
         }
-        static bool retryAllowed(string name)
-        {
-            bool retry = true;
-            return retry;
-        }
-
+       
         static double Test1 (string name)
             {
             double test1 = -1;
@@ -97,23 +91,24 @@
             return final;
         }
 
+        static double deterRetry(string name)
+        {
+            double final = calcFinal(name);
+            if (final < 50)
+            {
+                Console.WriteLine($"Final mark is less than 50. {name} qualifies for retry");
+                final = calcFinal(name);
+                return final;
+            }
+            return final;
+        }
+
         static void studentResults(string name)
         {
-           
-            double final = calcFinal(name);
-            
+            double final = deterRetry(name);
             Console.WriteLine($"Results for {name}");
-            Console.WriteLine($"Final: {final}");
-            //while (true)
-            //{
-            //    if (final < 50)
-            //    {
-            //        Console.Clear();
-            //        Console.WriteLine($"Final mark is less than 50. {name} qualifies for retry");
-            //        studentResults(name);
-            //        break;
-            //    }
-            //}
+            Console.WriteLine($"Final: {final}%");
+
             switch (final)
             {
                 case > 75:
